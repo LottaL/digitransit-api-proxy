@@ -17,24 +17,24 @@ A simple Node.js backend to proxy GraphQL requests to the Digitransit API withou
 
 ## Usage
 
-Send POST requests to `/graphql` with the GraphQL query in the request body. The server will forward the request to the Digitransit API and return the response.
+Send POST requests to `/graphql/:user` with the GraphQL query in the request body. The server will check that the request originates from the allowed client (specified in env secrets) and then forward it to the Digitransit API.
 
 Example:
 
 ```javascript
-fetch('https://your-heroku-app.herokuapp.com/graphql', {
-  method: 'POST',
+fetch("https://your-render-app.onrender.com/graphql/someuser", {
+  method: "POST",
   headers: {
-    'Content-Type': 'application/json'
+    "Content-Type": "application/json",
   },
   body: JSON.stringify({
     query: `{
       stops {
         name
       }
-    }`
-  })
+    }`,
+  }),
 })
-.then(response => response.json())
-.then(data => console.log(data));
+  .then((response) => response.json())
+  .then((data) => console.log(data));
 ```
