@@ -38,3 +38,23 @@ fetch("https://your-render-app.onrender.com/graphql/someuser", {
   .then((response) => response.json())
   .then((data) => console.log(data));
 ```
+
+### Environment Variables
+
+The app uses publicly available API. The Digitransit API **requires authentication** and needs to be proxied to hide the API key:
+
+- **Digitransit API Key** (Required): `DIGITRANSIT_API_KEY`
+  - Register at https://portal-api.digitransit.fi/
+  - Add to `.env.local`: `DIGITRANSIT_API_KEY=your_key_here`
+  - See [DIGITRANSIT_API_KEY.md](DIGITRANSIT_API_KEY.md) for detailed instructions
+- **Allowed origin** (Required):
+  - Client that is allowed to consume this proxy
+  - This is to avoid overusing the free, personal-project API key
+
+### Digitransit Router
+
+This proxy uses the HSL routing API. Other APIs available for example:
+
+- HSL (Helsinki): `https://api.digitransit.fi/routing/v2/hsl/gtfs/v1`
+- Waltti (Other Finnish cities): `https://api.digitransit.fi/routing/v2/waltti/gtfs/v1`
+- Finland (Nationwide): `https://api.digitransit.fi/routing/v2/finland/gtfs/v1`
