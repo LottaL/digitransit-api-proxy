@@ -12,7 +12,7 @@ const cors = require('cors');
   app.post('/graphql', async (req, res) => {
     // Check if the request is from the allowed client
     const allowedOrigin = process.env.ALLOWED_ORIGIN || 'http://localhost:5173'; // Set your allowed origin here
-    if (req.headers.origin !== allowedOrigin) {
+    if (allowedOrigin !== "*" &&req.headers.origin !== allowedOrigin) {
       return res.status(403).json({ error: 'Forbidden: Access denied' });
     }
 
